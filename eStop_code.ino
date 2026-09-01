@@ -22,7 +22,7 @@ void setup() {
 }
 
 void loop() {
-  bool switchPressed = (digitalRead(switchPin) == LOW);
+  bool switchPressed = (digitalRead(switchPin) == HIGH);
   bool estopPressed = (digitalRead(estopPin) == HIGH);
 
   if ((switchPressed || estopPressed) && !debounce) {
@@ -30,7 +30,7 @@ void loop() {
     bool dualPressConfirmed = false;
 
     while (millis() - windowStart < waitTime) {
-      if (digitalRead(switchPin) == LOW && digitalRead(estopPin) == HIGH) {
+      if (digitalRead(switchPin) ==HIGH && digitalRead(estopPin) == HIGH) {
         dualPressConfirmed = true;
         break;
       }
@@ -49,7 +49,7 @@ void loop() {
     bleKeyboard.releaseAll();
   }
 
-  if (digitalRead(switchPin) == HIGH && digitalRead(estopPin) == LOW) {
+  if (digitalRead(switchPin) == LOW && digitalRead(estopPin) == LOW) {
     debounce = false;
   }
 }
