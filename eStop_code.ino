@@ -39,9 +39,9 @@ void loop() {
     }
 
     if (dualPressConfirmed) {
-      bleKeyboard.press((uint8_t)'[');
-      bleKeyboard.press((uint8_t)']');
-      bleKeyboard.press((uint8_t)'\\');
+      bleKeyboard.press(KEY_LEFTBRACE);
+      bleKeyboard.press(KEY_RIGHTBRACE);
+      bleKeyboard.press(KEY_BACKSLASH);
     } else {
       bleKeyboard.press(KEY_RETURN);
     }
