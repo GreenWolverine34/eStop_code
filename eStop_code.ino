@@ -1,6 +1,5 @@
 #include <HijelHID_BLEKeyboard.h>
 
-// 1. Fixed missing quotes for the device name and manufacturer strings
 HijelHID_BLEKeyboard bleKeyboard("Robotics Button", "Custom", 67); 
 
 const int estopPin = 4;
@@ -11,7 +10,6 @@ unsigned long waitTime = 40;
 void setup() {
   Serial.begin(115200);
   
-  // REMOVED WiFi.mode(WIFI_OFF) to prevent radio chip shutdown
   
   pinMode(estopPin, INPUT_PULLUP);
   pinMode(switchPin, INPUT_PULLUP);
@@ -21,7 +19,6 @@ void setup() {
 }
 
 void loop() {
-  // SAFETY: Only monitor buttons if a device is actually paired and connected
   if (!bleKeyboard.isConnected()) {
     delay(100); 
     return;
@@ -42,7 +39,6 @@ void loop() {
     }
 
     if (dualPressConfirmed) {
-      // 2. Fixed character notation typos using single quotes
       bleKeyboard.press((uint8_t)'[');
       bleKeyboard.press((uint8_t)']');
       bleKeyboard.press((uint8_t)'\\'); 
@@ -51,7 +47,7 @@ void loop() {
     }
 
     debounce = true;
-    delay(100);
+    delay(70);
     bleKeyboard.releaseAll();
   }
 
